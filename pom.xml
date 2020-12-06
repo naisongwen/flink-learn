@@ -21,7 +21,7 @@ under the License.
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>org.learn.flink</groupId>
-    <artifactId>flink-learn-java</artifactId>
+    <artifactId>flink-learn</artifactId>
     <version>1.0-SNAPSHOT</version>
     <packaging>jar</packaging>
 
@@ -30,12 +30,12 @@ under the License.
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <flink.version>1.11-SNAPSHOT</flink.version>
+        <flink.version>1.11.2</flink.version>
         <java.version>1.8</java.version>
         <hive.version>2.3.6</hive.version>
         <reflections.version>0.9.8</reflections.version>
         <hadoop.version>2.7.5</hadoop.version>
-        <scala.binary.version>2.11</scala.binary.version>
+        <scala.binary.version>2.12</scala.binary.version>
         <hiverunner.version>4.0.0</hiverunner.version>
         <maven.compiler.source>${java.version}</maven.compiler.source>
         <maven.compiler.target>${java.version}</maven.compiler.target>

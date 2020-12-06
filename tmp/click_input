@@ -1,0 +1,11 @@
+marry 12:30:30 /home.html
+Bob 12:40:30 /cart.html
+marry 12:45:30 /prod.html?id=1
+marry 12:55:30 /prod.html?id=1
+Bob 13:05:30 /prod.html?id=1
+Liz 13:45:30 /prod.html?id=1
+Liz 13:55:30 /prod.html?id=2
+marry 14:30:30 /home.html
+Liz 14:25:30 /prod.html?id=3
+Bob 14:05:30 /prod.html?id=1
+Bob 14:35:30 /home.html
