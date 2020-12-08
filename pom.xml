@@ -31,6 +31,7 @@ under the License.
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <flink.version>1.11.2</flink.version>
+        <flink.jdbc.version>1.10.2</flink.jdbc.version>
         <java.version>1.8</java.version>
         <hive.version>2.3.6</hive.version>
         <reflections.version>0.9.8</reflections.version>
@@ -96,7 +97,7 @@ under the License.
         <dependency>
             <groupId>org.apache.flink</groupId>
             <artifactId>flink-jdbc_${scala.binary.version}</artifactId>
-            <version>${flink.version}</version>
+            <version>${flink.jdbc.version}</version>
         </dependency>
 
         <dependency>
