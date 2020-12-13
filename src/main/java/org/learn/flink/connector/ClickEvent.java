@@ -1,3 +1,5 @@
+package org.learn.flink.connector;
+
 import java.util.Date;
 
 public class ClickEvent {

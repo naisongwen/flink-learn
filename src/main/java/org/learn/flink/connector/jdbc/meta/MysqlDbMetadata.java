@@ -18,7 +18,6 @@
 package org.learn.flink.connector.jdbc.meta;
 
 import org.apache.derby.jdbc.EmbeddedXADataSource;
-import org.learn.flink.connector.jdbc.meta.DbMetadata;
 
 import javax.sql.XADataSource;
 

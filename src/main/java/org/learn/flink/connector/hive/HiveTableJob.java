@@ -3,7 +3,7 @@ package org.learn.flink.connector.hive;
 import org.apache.flink.api.java.ExecutionEnvironment;
 import org.apache.flink.api.java.typeutils.RowTypeInfo;
 import org.apache.flink.table.api.*;
-import org.apache.flink.table.api.java.BatchTableEnvironment;
+import org.apache.flink.table.api.bridge.java.BatchTableEnvironment;
 import org.apache.flink.table.catalog.ObjectPath;
 import org.apache.flink.table.catalog.exceptions.CatalogException;
 import org.apache.flink.table.catalog.hive.HiveCatalog;
@@ -48,7 +48,7 @@ public class HiveTableJob {
         }
     }
 
-    static void createHiveTable(HiveCatalog hiveCatalog,String catalogName,String database) throws Exception {
+    static void createHiveTable(HiveCatalog hiveCatalog, String catalogName, String database) throws Exception {
         ExecutionEnvironment env = ExecutionEnvironment.getExecutionEnvironment();
         BatchTableEnvironment tableEnv = BatchTableEnvironment.create(env);
 //        TableEnvironment tableEnv = createTableEnvWithBlinkPlannerBatchMode();

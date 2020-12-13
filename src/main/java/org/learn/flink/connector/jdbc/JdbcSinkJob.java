@@ -5,13 +5,12 @@ import org.apache.flink.api.common.typeinfo.BasicTypeInfo;
 import org.apache.flink.api.common.typeinfo.TypeInformation;
 import org.apache.flink.api.java.io.jdbc.JDBCAppendTableSink;
 import org.apache.flink.api.java.io.jdbc.JDBCInputFormat;
-import org.apache.flink.api.java.io.jdbc.dialect.JDBCDialects;
 import org.apache.flink.api.java.typeutils.RowTypeInfo;
 import org.apache.flink.streaming.api.datastream.DataStream;
 import org.apache.flink.streaming.api.datastream.DataStreamSource;
 import org.apache.flink.streaming.api.environment.StreamExecutionEnvironment;
 import org.apache.flink.table.api.EnvironmentSettings;
-import org.apache.flink.table.api.java.StreamTableEnvironment;
+import org.apache.flink.table.api.bridge.java.StreamTableEnvironment;
 import org.apache.flink.table.types.logical.RowType;
 import org.apache.flink.types.Row;
 import org.learn.flink.connector.jdbc.meta.DerbyDbMetadata;
@@ -76,7 +75,7 @@ public class JdbcSinkJob {
                 .setPassword(mysqlDbMetadata.getLoginPwd())
                 .setQuery("select * from books")
                 .setRowTypeInfo(rowTypeInfo)
-                .setRowConverter(JDBCDialects.get(mysqlDbMetadata.getUrl()).get().getRowConverter(rowType))
+                //.setRowConverter(JDBCDialects.get(mysqlDbMetadata.getUrl()).get().getRowConverter(rowType))
                 .finish();
         jdbcInputFormat.openInputFormat();
         DataStreamSource<Row> input1 = env.createInput(jdbcInputFormat);

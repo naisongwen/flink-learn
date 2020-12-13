@@ -173,6 +173,60 @@
         </exclusion>
       </exclusions>
     </dependency>
+      <dependency>
+          <groupId>org.apache.flink</groupId>
+          <artifactId>flink-streaming-java_2.12</artifactId>
+          <version>1.11.2</version>
+          <scope>compile</scope>
+      </dependency>
+    <dependency>
+      <groupId>org.apache.flink</groupId>
+      <artifactId>flink-table-api-java-bridge_2.12</artifactId>
+      <version>1.11.2</version>
+      <scope>compile</scope>
+    </dependency>
+      <dependency>
+          <groupId>org.apache.hive</groupId>
+          <artifactId>hive-common</artifactId>
+          <version>2.3.3</version>
+          <scope>compile</scope>
+      </dependency>
+    <dependency>
+      <groupId>org.apache.hive</groupId>
+      <artifactId>hive-common</artifactId>
+      <version>2.3.3</version>
+      <scope>compile</scope>
+    </dependency>
+    <dependency>
+      <groupId>junit</groupId>
+      <artifactId>junit</artifactId>
+      <version>4.12</version>
+      <scope>compile</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.flink</groupId>
+      <artifactId>flink-connector-hive_2.12</artifactId>
+      <version>1.11.2</version>
+      <scope>compile</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.flink</groupId>
+      <artifactId>flink-jdbc_2.12</artifactId>
+      <version>1.10.2</version>
+      <scope>compile</scope>
+    </dependency>
+      <dependency>
+          <groupId>org.apache.derby</groupId>
+          <artifactId>derby</artifactId>
+          <version>10.14.2.0</version>
+          <scope>compile</scope>
+      </dependency>
+    <dependency>
+      <groupId>org.apache.flink</groupId>
+      <artifactId>flink-connector-kafka-0.10_2.12</artifactId>
+      <version>1.11.2</version>
+      <scope>compile</scope>
+    </dependency>
   </dependencies>
   <properties>
     <hive.version>2.3.6</hive.version>

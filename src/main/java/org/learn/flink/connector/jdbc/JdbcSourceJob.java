@@ -35,8 +35,8 @@ public class JdbcSourceJob {
                 .setQuery("select * from airflow.users limit 10")
                 .setUsername(mysqlDbMetadata.getLoginAccount())
                 .setPassword(mysqlDbMetadata.getLoginPwd())
-                .setRowTypeInfo(rowTypeInfo)
-                .setRowConverter(JDBCDialects.get(mysqlDbMetadata.getUrl()).get().getRowConverter(rowType));
+                .setRowTypeInfo(rowTypeInfo);
+                //.setRowConverter(JDBCDialects.get(mysqlDbMetadata.getUrl()).get().getRowConverter(rowType));
 
         final int fetchSize = 1;
         //use a "splittable" query to exploit parallelism
