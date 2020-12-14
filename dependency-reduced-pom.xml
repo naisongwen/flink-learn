@@ -227,6 +227,24 @@
       <version>1.11.2</version>
       <scope>compile</scope>
     </dependency>
+      <dependency>
+          <groupId>org.apache.flink</groupId>
+          <artifactId>flink-connector-wikiedits_2.12</artifactId>
+          <version>1.11.2</version>
+          <scope>compile</scope>
+      </dependency>
+    <dependency>
+      <groupId>org.apache.flink</groupId>
+      <artifactId>flink-connector-wikiedits_2.12</artifactId>
+      <version>1.11.2</version>
+      <scope>compile</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.flink</groupId>
+      <artifactId>flink-connector-wikiedits_2.12</artifactId>
+      <version>1.11.2</version>
+      <scope>compile</scope>
+    </dependency>
   </dependencies>
   <properties>
     <hive.version>2.3.6</hive.version>

@@ -23,14 +23,11 @@ import java.sql.Timestamp;
 public class SocketStreamJob {
     public static void main(String[] args) throws Exception {
         StreamExecutionEnvironment env = StreamExecutionEnvironment.getExecutionEnvironment();
-        env.setStreamTimeCharacteristic(TimeCharacteristic.EventTime);
-        //StreamTableEnvironment tEnv = StreamTableEnvironment.create(env);
-
-        EnvironmentSettings envSettings = EnvironmentSettings.newInstance()
+        EnvironmentSettings settings = EnvironmentSettings.newInstance()
                 .useBlinkPlanner()
                 .inStreamingMode()
                 .build();
-        StreamTableEnvironment tEnv = StreamTableEnvironment.create(env, envSettings);
+        StreamTableEnvironment tEnv = StreamTableEnvironment.create(env, settings);
 
         //source,这里使用socket连接获取数据
         DataStreamSource<String> textStudent = env.socketTextStream("127.0.0.1", 9999, "\n");

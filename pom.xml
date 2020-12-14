@@ -30,13 +30,13 @@ under the License.
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <flink.version>1.11.2</flink.version>
+        <flink.version>1.12.0</flink.version>
+        <scala.binary.version>2.12</scala.binary.version>
         <flink.jdbc.version>1.10.2</flink.jdbc.version>
         <java.version>1.8</java.version>
-        <hive.version>2.3.6</hive.version>
+        <hive.version>3.1.2</hive.version>
         <reflections.version>0.9.8</reflections.version>
         <hadoop.version>2.7.5</hadoop.version>
-        <scala.binary.version>2.12</scala.binary.version>
         <hiverunner.version>4.0.0</hiverunner.version>
         <maven.compiler.source>${java.version}</maven.compiler.source>
         <maven.compiler.target>${java.version}</maven.compiler.target>
@@ -64,12 +64,6 @@ under the License.
             <version>${flink.version}</version>
             <!--			<scope>provided</scope>-->
         </dependency>
-        <dependency>
-            <groupId>org.apache.flink</groupId>
-            <artifactId>flink-streaming-java_${scala.binary.version}</artifactId>
-            <version>${flink.version}</version>
-            <!--			<scope>provided</scope>-->
-        </dependency>
 
         <dependency>
             <groupId>org.apache.flink</groupId>
@@ -79,9 +73,11 @@ under the License.
 
         <dependency>
             <groupId>org.apache.flink</groupId>
-            <artifactId>flink-table-common</artifactId>
+            <artifactId>flink-streaming-java_${scala.binary.version}</artifactId>
             <version>${flink.version}</version>
+            <!--			<scope>provided</scope>-->
         </dependency>
+
         <dependency>
             <groupId>org.apache.flink</groupId>
             <artifactId>flink-table-planner_${scala.binary.version}</artifactId>
@@ -104,7 +100,7 @@ under the License.
 
         <dependency>
             <groupId>org.apache.flink</groupId>
-            <artifactId>flink-connector-kafka-0.10_${scala.binary.version}</artifactId>
+            <artifactId>flink-connector-kafka_${scala.binary.version}</artifactId>
             <version>${flink.version}</version>
         </dependency>
 
@@ -184,7 +180,6 @@ under the License.
             <artifactId>junit</artifactId>
             <version>4.12</version>
         </dependency>
-
 
         <dependency>
             <groupId>org.apache.derby</groupId>
