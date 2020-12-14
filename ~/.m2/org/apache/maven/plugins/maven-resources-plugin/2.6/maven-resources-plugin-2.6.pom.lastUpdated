@@ -1,0 +1,4 @@
+#NOTE: This is a Maven Resolver internal implementation file, its format can be changed without prior notice.
+#Sat Dec 12 13:58:35 CST 2020
+@default-nexus-http\://59.110.69.250\:777/nexus/content/groups/public/.lastUpdated=1607752715962
+http\://59.110.69.250\:777/nexus/content/groups/public/.error=Could not transfer artifact org.apache.maven.plugins\:maven-resources-plugin\:pom\:2.6 from/to nexus (http\://59.110.69.250\:777/nexus/content/groups/public)\: Transfer failed for http\://59.110.69.250\:777/nexus/content/groups/public/org/apache/maven/plugins/maven-resources-plugin/2.6/maven-resources-plugin-2.6.pom
