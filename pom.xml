@@ -92,6 +92,12 @@ under the License.
 
         <dependency>
             <groupId>org.apache.flink</groupId>
+            <artifactId>flink-table-common</artifactId>
+            <version>${flink.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.apache.flink</groupId>
             <artifactId>flink-table-api-java-bridge_${scala.binary.version}</artifactId>
             <version>${flink.version}</version>
         </dependency>
@@ -214,13 +220,13 @@ under the License.
             </exclusions>
         </dependency>
 
-        <dependency>
-            <groupId>jdk.tools</groupId>
-            <artifactId>jdk.tools</artifactId>
-            <scope>system</scope>
-            <version>1.8</version>
-            <systemPath>${java.home}/../lib/tools.jar</systemPath>
-        </dependency>
+<!--        <dependency>-->
+<!--            <groupId>jdk.tools</groupId>-->
+<!--            <artifactId>jdk.tools</artifactId>-->
+<!--            <scope>system</scope>-->
+<!--            <version>1.8</version>-->
+<!--            <systemPath>${java.home}/../lib/tools.jar</systemPath>-->
+<!--        </dependency>-->
 
     </dependencies>
 
@@ -275,6 +281,9 @@ under the License.
                                 <transformer
                                         implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
                                     <mainClass>org.learn.flink.streaming.StreamingJob</mainClass>
+                                </transformer>
+                                <transformer implementation="org.apache.maven.plugins.shade.resource.AppendingTransformer">
+                                    <resource>reference.conf</resource>
                                 </transformer>
                             </transformers>
                         </configuration>

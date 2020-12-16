@@ -2,7 +2,7 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
   <modelVersion>4.0.0</modelVersion>
   <groupId>org.learn.flink</groupId>
-  <artifactId>flink-learn-java</artifactId>
+  <artifactId>flink-learn</artifactId>
   <name>Flink Quickstart Job</name>
   <version>1.0-SNAPSHOT</version>
   <url>http://www.learn.org</url>
@@ -90,6 +90,9 @@
                 <transformer>
                   <mainClass>org.learn.flink.streaming.StreamingJob</mainClass>
                 </transformer>
+                <transformer>
+                  <resource>reference.conf</resource>
+                </transformer>
               </transformers>
             </configuration>
           </execution>
@@ -173,87 +176,16 @@
         </exclusion>
       </exclusions>
     </dependency>
-      <dependency>
-          <groupId>org.apache.flink</groupId>
-          <artifactId>flink-streaming-java_2.12</artifactId>
-          <version>1.11.2</version>
-          <scope>compile</scope>
-      </dependency>
-    <dependency>
-      <groupId>org.apache.flink</groupId>
-      <artifactId>flink-table-api-java-bridge_2.12</artifactId>
-      <version>1.11.2</version>
-      <scope>compile</scope>
-    </dependency>
-      <dependency>
-          <groupId>org.apache.hive</groupId>
-          <artifactId>hive-common</artifactId>
-          <version>2.3.3</version>
-          <scope>compile</scope>
-      </dependency>
-    <dependency>
-      <groupId>org.apache.hive</groupId>
-      <artifactId>hive-common</artifactId>
-      <version>2.3.3</version>
-      <scope>compile</scope>
-    </dependency>
-    <dependency>
-      <groupId>junit</groupId>
-      <artifactId>junit</artifactId>
-      <version>4.12</version>
-      <scope>compile</scope>
-    </dependency>
-    <dependency>
-      <groupId>org.apache.flink</groupId>
-      <artifactId>flink-connector-hive_2.12</artifactId>
-      <version>1.11.2</version>
-      <scope>compile</scope>
-    </dependency>
-    <dependency>
-      <groupId>org.apache.flink</groupId>
-      <artifactId>flink-jdbc_2.12</artifactId>
-      <version>1.10.2</version>
-      <scope>compile</scope>
-    </dependency>
-      <dependency>
-          <groupId>org.apache.derby</groupId>
-          <artifactId>derby</artifactId>
-          <version>10.14.2.0</version>
-          <scope>compile</scope>
-      </dependency>
-    <dependency>
-      <groupId>org.apache.flink</groupId>
-      <artifactId>flink-connector-kafka-0.10_2.12</artifactId>
-      <version>1.11.2</version>
-      <scope>compile</scope>
-    </dependency>
-      <dependency>
-          <groupId>org.apache.flink</groupId>
-          <artifactId>flink-connector-wikiedits_2.12</artifactId>
-          <version>1.11.2</version>
-          <scope>compile</scope>
-      </dependency>
-    <dependency>
-      <groupId>org.apache.flink</groupId>
-      <artifactId>flink-connector-wikiedits_2.12</artifactId>
-      <version>1.11.2</version>
-      <scope>compile</scope>
-    </dependency>
-    <dependency>
-      <groupId>org.apache.flink</groupId>
-      <artifactId>flink-connector-wikiedits_2.12</artifactId>
-      <version>1.11.2</version>
-      <scope>compile</scope>
-    </dependency>
   </dependencies>
   <properties>
-    <hive.version>2.3.6</hive.version>
-    <flink.version>1.11-SNAPSHOT</flink.version>
+    <hive.version>3.1.2</hive.version>
+    <flink.version>1.12.0</flink.version>
     <reflections.version>0.9.8</reflections.version>
     <java.version>1.8</java.version>
     <hiverunner.version>4.0.0</hiverunner.version>
+    <flink.jdbc.version>1.10.2</flink.jdbc.version>
     <maven.compiler.target>${java.version}</maven.compiler.target>
-    <scala.binary.version>2.11</scala.binary.version>
+    <scala.binary.version>2.12</scala.binary.version>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <hadoop.version>2.7.5</hadoop.version>
     <maven.compiler.source>${java.version}</maven.compiler.source>

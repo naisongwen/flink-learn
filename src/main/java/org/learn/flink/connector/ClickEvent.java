@@ -1,10 +1,10 @@
 package org.learn.flink.connector;
 
-import java.util.Date;
+import java.sql.Time;
 
 public class ClickEvent {
     String user;
-    Date ctime;
+    Time ctime;
     String url;
 
     public String getUser() {
@@ -15,11 +15,11 @@ public class ClickEvent {
         this.user = user;
     }
 
-    public Date getCtime() {
+    public Time getCtime() {
         return ctime;
     }
 
-    public void setCtime(Date ctime) {
+    public void setCtime(Time ctime) {
         this.ctime = ctime;
     }
 
@@ -29,5 +29,10 @@ public class ClickEvent {
 
     public void setUrl(String url) {
         this.url = url;
+    }
+
+    @Override
+    public String toString(){
+        return String.format("%s-%s-%s", user,ctime.toString(),url);
     }
 }

@@ -41,6 +41,9 @@ import static org.apache.flink.table.api.Expressions.$;
  *  - Run a StreamSQL query on the registered Table
  *
  */
+
+//java -cp target/flink-learn-1.0-SNAPSHOT.jar;;C:\Users\wns\.m2\org\apache\flink\flink-table-planner-blink_2.12\1.12.0\flink-table-planner-blink_2.12-1.12.0.jar  org.learn.flink.quickstart.streaming.StreamSQLExample
+
 public class StreamSQLExample {
 
 	// *************************************************************************

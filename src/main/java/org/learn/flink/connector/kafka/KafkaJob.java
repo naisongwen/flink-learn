@@ -2,7 +2,6 @@ package org.learn.flink.connector.kafka;
 
 import org.apache.flink.api.common.ExecutionConfig;
 import org.apache.flink.api.common.restartstrategy.RestartStrategies;
-import org.apache.flink.api.common.serialization.TypeInformationSerializationSchema;
 import org.apache.flink.api.common.typeinfo.TypeInformation;
 import org.apache.flink.api.common.typeinfo.Types;
 import org.apache.flink.api.common.typeutils.TypeSerializer;
@@ -18,11 +17,8 @@ import org.apache.flink.streaming.api.functions.sink.SinkFunction;
 import org.apache.flink.streaming.api.functions.source.SourceFunction;
 import org.apache.flink.streaming.api.operators.StreamSink;
 import org.apache.flink.streaming.api.watermark.Watermark;
-import org.apache.flink.streaming.connectors.kafka.FlinkKafkaConsumer010;
-import org.apache.flink.streaming.connectors.kafka.FlinkKafkaProducer010;
+import org.apache.flink.streaming.connectors.kafka.FlinkKafkaConsumer;
 import org.apache.flink.streaming.connectors.kafka.KafkaDeserializationSchema;
-import org.apache.flink.streaming.connectors.kafka.internals.KeyedSerializationSchemaWrapper;
-import org.apache.flink.streaming.connectors.kafka.partitioner.FlinkKafkaPartitioner;
 import org.apache.flink.streaming.runtime.streamrecord.StreamRecord;
 import org.apache.kafka.clients.consumer.ConsumerRecord;
 import org.apache.kafka.common.serialization.StringDeserializer;
@@ -66,18 +62,18 @@ public class KafkaJob {
 
         Properties properties=buildKafkaProperties(true);
 
-        final TypeInformationSerializationSchema<Long> longSer = new TypeInformationSerializationSchema<>(Types.LONG, env.getConfig());
-        FlinkKafkaProducer010.FlinkKafkaProducer010Configuration prod = FlinkKafkaProducer010.writeToKafkaWithTimestamps(streamWithTimestamps, topic, new KeyedSerializationSchemaWrapper<>(longSer),properties,new FlinkKafkaPartitioner<Long>() {
-            private static final long serialVersionUID = -6730989584364230617L;
-
-            @Override
-            public int partition(Long next, byte[] key, byte[] value, String targetTopic, int[] partitions) {
-                return (int) (next % 3);
-            }
-        });
-        prod.setParallelism(3);
-        prod.setWriteTimestampToKafka(true);
-        env.execute("Produce some");
+//        final TypeInformationSerializationSchema<Long> longSer = new TypeInformationSerializationSchema<>(Types.LONG, env.getConfig());
+//        FlinkKafkaProducer.FlinkKafkaProducerConfiguration prod = FlinkKafkaProducer.writeToKafkaWithTimestamps(streamWithTimestamps, topic, new KeyedSerializationSchemaWrapper<>(longSer),properties,new FlinkKafkaPartitioner<Long>() {
+//            private static final long serialVersionUID = -6730989584364230617L;
+//
+//            @Override
+//            public int partition(Long next, byte[] key, byte[] value, String targetTopic, int[] partitions) {
+//                return (int) (next % 3);
+//            }
+//        });
+//        prod.setParallelism(3);
+//        prod.setWriteTimestampToKafka(true);
+//        env.execute("Produce some");
 
         // ---------- Consume stream from Kafka -------------------
 
@@ -86,7 +82,7 @@ public class KafkaJob {
         env.getConfig().setRestartStrategy(RestartStrategies.noRestart());
         env.setStreamTimeCharacteristic(TimeCharacteristic.EventTime);
 
-        FlinkKafkaConsumer010<Long> kafkaSource = new FlinkKafkaConsumer010<>(topic, new LimitedLongDeserializer(),properties);
+        FlinkKafkaConsumer<Long> kafkaSource = new FlinkKafkaConsumer<>(topic, new LimitedLongDeserializer(),properties);
         kafkaSource.assignTimestampsAndWatermarks(new AssignerWithPunctuatedWatermarks<Long>() {
             private static final long serialVersionUID = -4834111073247835189L;
 

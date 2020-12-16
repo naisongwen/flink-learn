@@ -1,23 +1,29 @@
-package org.learn.flink.quickstart.streaming;
+package org.learn.flink.connector.socket;
 
 import org.apache.flink.api.common.functions.FlatMapFunction;
 import org.apache.flink.api.java.tuple.Tuple2;
 import org.apache.flink.streaming.api.datastream.DataStream;
 import org.apache.flink.streaming.api.environment.StreamExecutionEnvironment;
+import org.apache.flink.streaming.api.windowing.assigners.TumblingProcessingTimeWindows;
 import org.apache.flink.streaming.api.windowing.time.Time;
 
 import org.apache.flink.util.Collector;
+//https://ci.apache.org/projects/flink/flink-docs-release-1.12/dev/datastream_api.html
 
 public class WordCountStreaming {
     public static void main(String[] args) throws Exception {
+
         StreamExecutionEnvironment env = StreamExecutionEnvironment.getExecutionEnvironment();
+
         DataStream<Tuple2<String, Integer>> dataStream = env
                 .socketTextStream("localhost", 9999)
                 .flatMap(new Splitter())
                 .keyBy(value -> value.f0)
-                .timeWindow(Time.seconds(5))
+                .window(TumblingProcessingTimeWindows.of(Time.seconds(3)))
                 .sum(1);
+
         dataStream.print();
+
         env.execute("Window WordCount");
     }
 
