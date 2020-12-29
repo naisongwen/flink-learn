@@ -30,7 +30,7 @@ import org.apache.flink.table.api.bridge.java.BatchTableEnvironment;
  *  - Register a Table under a name
  *  - Run a SQL query on the registered Table
  */
-public class WordCountSQL {
+public class BatchProcessSQLDemo {
 
     // *************************************************************************
     //     PROGRAM

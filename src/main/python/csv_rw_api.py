@@ -20,7 +20,7 @@ t_env.register_table_source("mySource", csv_source)
 # create a TableSink
 field_names = ["word", "count"]
 field_types = [DataTypes.STRING(), DataTypes.BIGINT()]
-csv_sink = CsvTableSink(field_names, field_types, "tmp/csv_output.csv", ",", 1, WriteMode.OVERWRITE)
+csv_sink = CsvTableSink(field_names, field_types, "tmp/output/csv_output.csv", ",", 1, WriteMode.OVERWRITE)
 t_env.register_table_sink("mySink", csv_sink)
 
 """

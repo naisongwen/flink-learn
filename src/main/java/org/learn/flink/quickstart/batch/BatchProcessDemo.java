@@ -34,7 +34,7 @@ import org.apache.flink.util.Collector;
  * change the main class in the POM.xml file to this class (simply search for 'mainClass')
  * and run 'mvn clean package' on the command line.
  */
-public class BatchJob {
+public class BatchProcessDemo {
 
 	public static void main(String[] args) throws Exception {
 		// set up the batch execution environment
@@ -82,6 +82,7 @@ public class BatchJob {
 		//A program needs at least one sink that consumes data. Examples are writing the data set or printing it
 		counts.print();
 		// execute program
+		//the below code will throw exceptions:Exception in thread "main" java.lang.RuntimeException: No new data sinks have been defined since the last execution. The last execution refers to the latest call to 'execute()', 'count()', 'collect()', or 'print()'.
 		//env.execute("Flink Batch Java API Skeleton");
 	}
 

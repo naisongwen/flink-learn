@@ -1,4 +1,4 @@
-package org.learn.flink.quickstart.streaming;
+package org.learn.flink.quickstart.window;
 
 import org.apache.flink.api.java.tuple.Tuple;
 import org.apache.flink.api.java.tuple.Tuple3;
@@ -10,7 +10,17 @@ import org.apache.flink.util.Collector;
 
 //https://www.cnblogs.com/linjiqin/p/12591729.html
 
-public class WindowProcessStreaming {
+public class CountWindowProcess {
+
+    public static final Tuple3[] ENGLISH = new Tuple3[]{
+            Tuple3.of("class1","张三",100L),
+            Tuple3.of("class1","李四",78L),
+            Tuple3.of("class1","王五",99L),
+            Tuple3.of("class2","赵六",81L),
+            Tuple3.of("class2","小七",59L),
+            Tuple3.of("class2","小八",97L),
+    };
+
     public static void main(String[] args) throws Exception {
         //获取执行环境
         StreamExecutionEnvironment env = StreamExecutionEnvironment.getExecutionEnvironment();
@@ -41,13 +51,4 @@ public class WindowProcessStreaming {
             out.collect((double)(sum/count));
         }
     }
-
-    public static final Tuple3[] ENGLISH = new Tuple3[]{
-            Tuple3.of("class1","张三",100L),
-            Tuple3.of("class1","李四",78L),
-            Tuple3.of("class1","王五",99L),
-            Tuple3.of("class2","赵六",81L),
-            Tuple3.of("class2","小七",59L),
-            Tuple3.of("class2","小八",97L),
-    };
 }

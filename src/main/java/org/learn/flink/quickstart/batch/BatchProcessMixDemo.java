@@ -16,7 +16,7 @@
  * limitations under the License.
  */
 
-package org.learn.flink.quickstart.table;
+package org.learn.flink.quickstart.batch;
 
 import org.apache.flink.api.java.DataSet;
 import org.apache.flink.api.java.ExecutionEnvironment;
@@ -30,7 +30,7 @@ import org.apache.flink.table.api.bridge.java.BatchTableEnvironment;
  *  - Convert DataSets to Tables
  *  - Apply group, aggregate, select, and filter operations
  */
-public class WordCountTable {
+public class BatchProcessMixDemo {
 
 	// *************************************************************************
 	//     PROGRAM

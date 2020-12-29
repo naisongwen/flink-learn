@@ -9,10 +9,10 @@ import org.apache.flink.streaming.api.environment.StreamExecutionEnvironment;
 import org.apache.flink.streaming.api.functions.AssignerWithPeriodicWatermarks;
 import org.apache.flink.streaming.api.watermark.Watermark;
 import org.apache.flink.util.Collector;
-import org.learn.flink.connector.ClickEvent;
+import org.learn.flink.ClickEvent;
 
 import javax.annotation.Nullable;
-import java.sql.Time;
+import java.sql.Timestamp;
 
 public class FileReader {
     public static void main(String[] args) throws Exception {
@@ -28,7 +28,8 @@ public class FileReader {
                 if (StringUtils.isNotBlank(s)) {
                     ClickEvent clickEvent = new ClickEvent();
                     clickEvent.setUser(infos[0]);
-                    clickEvent.setCtime(Time.valueOf(infos[1]));
+                    Timestamp timestamp=Timestamp.valueOf("2020-12-16 "+infos[1]);
+                    clickEvent.setTimestamp(timestamp);
                     clickEvent.setUrl(infos[2]);
                     collector.collect(clickEvent);
                 }
@@ -45,7 +46,7 @@ public class FileReader {
 
             @Override
             public long extractTimestamp(ClickEvent clickEvent, long l) {
-                return clickEvent.getCtime().getTime();
+                return clickEvent.getTimestamp().getTime();
             }
         });
         dataStream.print();

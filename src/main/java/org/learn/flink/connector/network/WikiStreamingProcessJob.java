@@ -16,7 +16,7 @@
  * limitations under the License.
  */
 
-package org.learn.flink.streaming;
+package org.learn.flink.connector.network;
 
 import org.apache.flink.api.common.functions.AggregateFunction;
 import org.apache.flink.api.java.functions.KeySelector;
@@ -45,7 +45,7 @@ import javax.annotation.Nullable;
  * <p>If you change the name of the main class (with the public static void main(String[] args))
  * method, change the respective entry in the POM.xml file (simply search for 'mainClass').
  */
-public class StreamingJob {
+public class WikiStreamingProcessJob {
 
 	public static void main(String[] args) throws Exception {
 		//1.获取环境信息

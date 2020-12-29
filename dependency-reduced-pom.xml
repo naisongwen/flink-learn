@@ -88,7 +88,7 @@
               </filters>
               <transformers>
                 <transformer>
-                  <mainClass>org.learn.flink.streaming.StreamingJob</mainClass>
+                  <mainClass>org.learn.flink.connector.network.StreamingJob</mainClass>
                 </transformer>
                 <transformer>
                   <resource>reference.conf</resource>
