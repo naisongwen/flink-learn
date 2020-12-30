@@ -11,6 +11,6 @@ ds = env.from_collection(
     type_info=Types.ROW([Types.INT(), Types.STRING()]))
 
 ds.add_sink(StreamingFileSink
-    .for_row_format('/tmp/output', SimpleStringEncoder())
+    .for_row_format('/tmp/output/collection_output', SimpleStringEncoder())
     .build())
 env.execute("tutorial_job")

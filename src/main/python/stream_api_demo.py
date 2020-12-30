@@ -23,7 +23,7 @@ my_sink_ddl = """
     ) with (
         'connector' = 'filesystem',
         'format' = 'csv',
-        'path' = 'tmp/wc_sql_output.csv'
+        'path' = 'tmp/output/sql_output'
     )
 """
 
@@ -36,7 +36,8 @@ onsuming update changes which is produced by node GroupAggregate(groupBy=[word],
  select=[word, COUNT($f1) AS EXPR$0])"
 """
 #t_env.from_path('mySource').group_by('word').select('word, count(1)').execute_insert("mySink", True)
-t_env.sql_query("select word,count(1) as cnt from mySource group by word").select('word,cnt').execute_insert("mySink", True)
-# t_env.from_path('mySource').group_by('word').select('word, count(1)').insert_into('mySink')
+#t_env.sql_query("select word,count(1) as cnt from mySource group by word").select('word,cnt').execute_insert("mySink", True)
+#t_env.from_path('mySource').group_by('word').select('word, count(1)').insert_into('mySink')
+t_env.from_path('mySource').select('word, 1').insert_into('mySink')
 
 t_env.execute("tutorial_job")
