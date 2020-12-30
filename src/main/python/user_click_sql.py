@@ -30,8 +30,22 @@ my_sink_ddl = """
     )
 """
 
+my_sink_ddl = """
+    create table sink (
+         `user` VARCHAR,
+        `ctime` TIMESTAMP,
+        `cnt` bigint
+    ) with (
+        'connector' = 'print'
+    )
+"""
 t_env.execute_sql(my_source_ddl)
 t_env.execute_sql(my_sink_ddl)
+
+#pyflink.util.exceptions.TableException: "AppendStreamTableSink doesn't support consuming
+#update changes which is produced by node GroupAggregate(groupBy=[user, end_time],
+#select=[user, end_time, COUNT(url) AS cnt])"
+
 t_env.execute_sql("""
 insert into sink select user,tumble_end(ctime,interval '1' hours) as end_time,count(url) as cnt
 from clicks

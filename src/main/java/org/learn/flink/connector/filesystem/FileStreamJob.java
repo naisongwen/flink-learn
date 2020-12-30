@@ -1,6 +1,7 @@
 package org.learn.flink.connector.filesystem;
 
 import org.apache.commons.lang3.StringUtils;
+import org.apache.flink.api.common.RuntimeExecutionMode;
 import org.apache.flink.api.common.functions.FlatMapFunction;
 import org.apache.flink.api.common.serialization.SimpleStringEncoder;
 import org.apache.flink.api.java.tuple.Tuple2;
@@ -38,7 +39,7 @@ public class FileStreamJob {
 //                .inStreamingMode()
 //                .build();
         StreamTableEnvironment tEnv = StreamTableEnvironment.create(env);
-
+//        env.setRuntimeMode(RuntimeExecutionMode.BATCH);
         DataStreamSource<String> clickEventSource = env.readTextFile("file:///C:/Users/wns/Documents/workplace/flink-learn-java/tmp/click_input");
 
         SingleOutputStreamOperator<ClickEvent> clickEventSourceStream = clickEventSource.flatMap(new FlatMapFunction<String, ClickEvent>() {
