@@ -27,11 +27,13 @@ my_sink_ddl = """
     )
 """
 
+# org.apache.flink.table.api.ValidationException: Flink doesn't support ENFORCED mode for PRIMARY KEY constaint. ENFORCED/NOT ENFORCED  controls if the constraint checks are performed on the incoming/outgoing data.
+#Flink does not own the data therefore the only supported mode is the NOT ENFORCED mode
 mysql_sink_ddl = """
     create table mysql_sink (
         word VARCHAR,
         `count` BIGINT,
-        primary key(word)
+        primary key(word) NOT ENFORCED
     ) with (
         'connector.type' = 'jdbc',
         'url' = 'jdbc:mysql://192.168.1.18:3306/hzgas_hand',
