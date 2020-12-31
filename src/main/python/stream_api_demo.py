@@ -36,11 +36,11 @@ mysql_sink_ddl = """
         primary key(word) NOT ENFORCED
     ) with (
         'connector.type' = 'jdbc',
-        'url' = 'jdbc:mysql://192.168.1.18:3306/hzgas_hand',
-        'table-name' = 'mysqlSink',
-        'driver' = 'com.mysql.jdbc.Driver',
-        'username' = 'hzgas',
-        'password' = 'Hzgas@2019'
+        'connector.url' = 'jdbc:mysql://192.168.1.18:3306/hzgas_hand',
+        'connector.table' = 'mysqlSink',
+        'connector.driver' = 'com.mysql.jdbc.Driver',
+        'connector.username' = 'hzgas',
+        'connector.password' = 'Hzgas@2019'
     )
 """
 
