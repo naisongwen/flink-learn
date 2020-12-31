@@ -26,7 +26,7 @@ my_sink_ddl = """
     ) with (
         'connector' = 'filesystem',
         'format' = 'csv',
-        'path' = 'tmp/click_output'
+        'path' = 'tmp/output/click_output'
     )
 """
 
@@ -45,6 +45,8 @@ t_env.execute_sql(my_sink_ddl)
 #pyflink.util.exceptions.TableException: "AppendStreamTableSink doesn't support consuming
 #update changes which is produced by node GroupAggregate(groupBy=[user, end_time],
 #select=[user, end_time, COUNT(url) AS cnt])"
+
+#org.apache.flink.table.planner.codegen.CodeGenException: Unsupported call: TUMBLE_END(TIMESTAMP(6), INTERVAL SECOND(3) NOT NULL)
 
 t_env.execute_sql("""
 insert into sink select user,tumble_end(ctime,interval '1' hours) as end_time,count(url) as cnt

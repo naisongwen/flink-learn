@@ -1,6 +1,4 @@
 .idea
 target
 metastore_db
-target 
-.idea 
-~/.m2/ 
+tmp/output/

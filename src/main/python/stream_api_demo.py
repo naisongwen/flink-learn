@@ -27,8 +27,24 @@ my_sink_ddl = """
     )
 """
 
+mysql_sink_ddl = """
+    create table mysql_sink (
+        word VARCHAR,
+        `count` BIGINT,
+        primary key(word)
+    ) with (
+        'connector.type' = 'jdbc',
+        'url' = 'jdbc:mysql://192.168.1.18:3306/hzgas_hand',
+        'table-name' = 'mysqlSink',
+        'driver' = 'com.mysql.jdbc.Driver',
+        'username' = 'hzgas',
+        'password' = 'Hzgas@2019'
+    )
+"""
+
 t_env.execute_sql(my_source_ddl)
 t_env.execute_sql(my_sink_ddl)
+t_env.execute_sql(mysql_sink_ddl)
 
 """
 pyflink.util.exceptions.TableException: "AppendStreamTableSink doesn't support c
@@ -38,6 +54,6 @@ onsuming update changes which is produced by node GroupAggregate(groupBy=[word],
 #t_env.from_path('mySource').group_by('word').select('word, count(1)').execute_insert("mySink", True)
 #t_env.sql_query("select word,count(1) as cnt from mySource group by word").select('word,cnt').execute_insert("mySink", True)
 #t_env.from_path('mySource').group_by('word').select('word, count(1)').insert_into('mySink')
-t_env.from_path('mySource').select('word, 1').insert_into('mySink')
+t_env.from_path('mySource').select('word, 1').insert_into('mysql_sink_ddl')
 
 t_env.execute("tutorial_job")

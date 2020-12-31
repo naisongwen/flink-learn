@@ -72,7 +72,7 @@ public class ComplexKafkaConsumer {
 //        consumeStream.keyBy(new KeySelector<TypeRecord, String>() {
 //                                @Override
 //                                public String getKey(TypeRecord value) throws Exception {
-//                                    return value.boyName;  //按照基站分组
+//                                    return value.boyName;
 //                                }
 //                            }
 //        ).window(TumblingEventTimeWindows.of(Time.seconds(1))) //设置时间窗口

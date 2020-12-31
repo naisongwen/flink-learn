@@ -53,6 +53,6 @@ public class ClickEvent {
 
     @Override
     public String toString() {
-        return String.format("%s-%s-%s", user, time.toString(), url);
+        return String.format("%s-%s-%s", user, timestamp.toString(), url);
     }
 }

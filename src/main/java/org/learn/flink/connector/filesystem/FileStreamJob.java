@@ -72,7 +72,7 @@ public class FileStreamJob {
             }
         });
 
-        tEnv.createTemporaryView("clickEvents", dataStream, $("user"), $("ctime").rowtime(), $("url"));
+        tEnv.createTemporaryView("clickEvents", dataStream, $("user"), $("timestamp").rowtime(), $("url"));
         tEnv.registerFunction("utc2local", new UTC2Local());
         Table queryTable = tEnv.sqlQuery("select * from clickEvents");
         DataStream<Row> simpleRowStream = tEnv.toAppendStream(queryTable, Row.class);
