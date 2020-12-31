@@ -55,7 +55,7 @@ onsuming update changes which is produced by node GroupAggregate(groupBy=[word],
 """
 #t_env.from_path('mySource').group_by('word').select('word, count(1)').execute_insert("mySink", True)
 #t_env.sql_query("select word,count(1) as cnt from mySource group by word").select('word,cnt').execute_insert("mySink", True)
-#t_env.from_path('mySource').group_by('word').select('word, count(1)').insert_into('mySink')
+t_env.from_path('mySource').group_by('word').select('word, count(1)').insert_into('mysql_sink')
 t_env.from_path('mySource').select('word, 1').insert_into('mysql_sink')
 
 t_env.execute("tutorial_job")
