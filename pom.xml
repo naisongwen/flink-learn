@@ -25,19 +25,21 @@ under the License.
     <version>1.0-SNAPSHOT</version>
     <packaging>jar</packaging>
 
-    <name>Flink Quickstart Job</name>
+    <name>Flink Quickstart</name>
     <url>http://www.learn.org</url>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <flink.version>1.12.0</flink.version>
         <scala.binary.version>2.12</scala.binary.version>
+        <scala.libary.version>2.12.12</scala.libary.version>
         <flink.jdbc.version>1.10.2</flink.jdbc.version>
         <java.version>1.8</java.version>
         <hive.version>3.1.2</hive.version>
         <reflections.version>0.9.8</reflections.version>
         <hadoop.version>2.7.5</hadoop.version>
         <hiverunner.version>4.0.0</hiverunner.version>
+        <scala.version>2.12.10</scala.version>
         <maven.compiler.source>${java.version}</maven.compiler.source>
         <maven.compiler.target>${java.version}</maven.compiler.target>
     </properties>
@@ -57,7 +59,6 @@ under the License.
     </repositories>
 
     <dependencies>
-
         <dependency>
             <groupId>org.apache.flink</groupId>
             <artifactId>flink-java</artifactId>
@@ -131,10 +132,22 @@ under the License.
 
         <dependency>
             <groupId>org.apache.flink</groupId>
+            <artifactId>flink-cep_${scala.binary.version}</artifactId>
+            <version>${flink.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.apache.flink</groupId>
             <artifactId>flink-json</artifactId>
             <version>${flink.version}</version>
         </dependency>
 
+        <dependency>
+            <groupId>org.scala-lang</groupId>
+            <artifactId>scala-library</artifactId>
+            <version>${scala.libary.version}</version>
+<!--            <scope>provided</scope>-->
+        </dependency>
 
         <dependency>
             <groupId>mysql</groupId>
@@ -220,14 +233,6 @@ under the License.
             </exclusions>
         </dependency>
 
-<!--        <dependency>-->
-<!--            <groupId>jdk.tools</groupId>-->
-<!--            <artifactId>jdk.tools</artifactId>-->
-<!--            <scope>system</scope>-->
-<!--            <version>1.8</version>-->
-<!--            <systemPath>${java.home}/../lib/tools.jar</systemPath>-->
-<!--        </dependency>-->
-
     </dependencies>
 
     <build>
@@ -295,45 +300,6 @@ under the License.
         <pluginManagement>
             <plugins>
 
-                <!-- This improves the out-of-the-box experience in Eclipse by resolving some warnings. -->
-                <plugin>
-                    <groupId>org.eclipse.m2e</groupId>
-                    <artifactId>lifecycle-mapping</artifactId>
-                    <version>1.0.0</version>
-                    <configuration>
-                        <lifecycleMappingMetadata>
-                            <pluginExecutions>
-                                <pluginExecution>
-                                    <pluginExecutionFilter>
-                                        <groupId>org.apache.maven.plugins</groupId>
-                                        <artifactId>maven-shade-plugin</artifactId>
-                                        <versionRange>[3.1.1,)</versionRange>
-                                        <goals>
-                                            <goal>shade</goal>
-                                        </goals>
-                                    </pluginExecutionFilter>
-                                    <action>
-                                        <ignore/>
-                                    </action>
-                                </pluginExecution>
-                                <pluginExecution>
-                                    <pluginExecutionFilter>
-                                        <groupId>org.apache.maven.plugins</groupId>
-                                        <artifactId>maven-compiler-plugin</artifactId>
-                                        <versionRange>[3.1,)</versionRange>
-                                        <goals>
-                                            <goal>testCompile</goal>
-                                            <goal>compile</goal>
-                                        </goals>
-                                    </pluginExecutionFilter>
-                                    <action>
-                                        <ignore/>
-                                    </action>
-                                </pluginExecution>
-                            </pluginExecutions>
-                        </lifecycleMappingMetadata>
-                    </configuration>
-                </plugin>
             </plugins>
         </pluginManagement>
     </build>
