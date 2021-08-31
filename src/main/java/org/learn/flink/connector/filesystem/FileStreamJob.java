@@ -1,7 +1,6 @@
 package org.learn.flink.connector.filesystem;
 
 import org.apache.commons.lang3.StringUtils;
-import org.apache.flink.api.common.RuntimeExecutionMode;
 import org.apache.flink.api.common.functions.FlatMapFunction;
 import org.apache.flink.api.common.serialization.SimpleStringEncoder;
 import org.apache.flink.api.java.tuple.Tuple2;
@@ -21,7 +20,7 @@ import org.apache.flink.table.api.bridge.java.StreamTableEnvironment;
 import org.apache.flink.table.functions.ScalarFunction;
 import org.apache.flink.types.Row;
 import org.apache.flink.util.Collector;
-import org.learn.flink.ClickEvent;
+import org.learn.flink.common.ClickEvent;
 
 import javax.annotation.Nullable;
 import java.sql.Timestamp;

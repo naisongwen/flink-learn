@@ -30,9 +30,10 @@ under the License.
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <flink.version>1.12.0</flink.version>
-        <scala.binary.version>2.12</scala.binary.version>
-        <scala.libary.version>2.12.12</scala.libary.version>
+        <iceberg.version>0.11.1</iceberg.version>
+        <debezium.version>1.5.3.Final</debezium.version>
+        <flink.version>1.13.0</flink.version>
+        <scala.libary.version>2.12</scala.libary.version>
         <flink.jdbc.version>1.10.2</flink.jdbc.version>
         <java.version>1.8</java.version>
         <hive.version>3.1.2</hive.version>
@@ -68,26 +69,26 @@ under the License.
 
         <dependency>
             <groupId>org.apache.flink</groupId>
-            <artifactId>flink-clients_${scala.binary.version}</artifactId>
+            <artifactId>flink-clients_${scala.libary.version}</artifactId>
             <version>${flink.version}</version>
         </dependency>
 
         <dependency>
             <groupId>org.apache.flink</groupId>
-            <artifactId>flink-streaming-java_${scala.binary.version}</artifactId>
+            <artifactId>flink-streaming-java_${scala.libary.version}</artifactId>
             <version>${flink.version}</version>
             <!--			<scope>provided</scope>-->
         </dependency>
 
         <dependency>
             <groupId>org.apache.flink</groupId>
-            <artifactId>flink-table-planner_${scala.binary.version}</artifactId>
+            <artifactId>flink-table-planner_${scala.libary.version}</artifactId>
             <version>${flink.version}</version>
         </dependency>
 
         <dependency>
             <groupId>org.apache.flink</groupId>
-            <artifactId>flink-table-planner-blink_${scala.binary.version}</artifactId>
+            <artifactId>flink-table-planner-blink_${scala.libary.version}</artifactId>
             <version>${flink.version}</version>
         </dependency>
 
@@ -99,7 +100,7 @@ under the License.
 
         <dependency>
             <groupId>org.apache.flink</groupId>
-            <artifactId>flink-table-api-java-bridge_${scala.binary.version}</artifactId>
+            <artifactId>flink-table-api-java-bridge_${scala.libary.version}</artifactId>
             <version>${flink.version}</version>
         </dependency>
 
@@ -107,32 +108,32 @@ under the License.
 
         <dependency>
             <groupId>org.apache.flink</groupId>
-            <artifactId>flink-connector-kafka_${scala.binary.version}</artifactId>
+            <artifactId>flink-connector-kafka_${scala.libary.version}</artifactId>
             <version>${flink.version}</version>
         </dependency>
 
         <!-- https://mvnrepository.com/artifact/org.apache.flink/flink-jdbc -->
         <dependency>
             <groupId>org.apache.flink</groupId>
-            <artifactId>flink-jdbc_${scala.binary.version}</artifactId>
+            <artifactId>flink-jdbc_${scala.libary.version}</artifactId>
             <version>${flink.jdbc.version}</version>
         </dependency>
 
         <dependency>
             <groupId>org.apache.flink</groupId>
-            <artifactId>flink-connector-wikiedits_${scala.binary.version}</artifactId>
+            <artifactId>flink-connector-wikiedits_${scala.libary.version}</artifactId>
             <version>${flink.version}</version>
         </dependency>
 
         <dependency>
             <groupId>org.apache.flink</groupId>
-            <artifactId>flink-connector-hive_${scala.binary.version}</artifactId>
+            <artifactId>flink-connector-hive_${scala.libary.version}</artifactId>
             <version>${flink.version}</version>
         </dependency>
 
         <dependency>
             <groupId>org.apache.flink</groupId>
-            <artifactId>flink-cep_${scala.binary.version}</artifactId>
+            <artifactId>flink-cep_${scala.libary.version}</artifactId>
             <version>${flink.version}</version>
         </dependency>
 
@@ -141,12 +142,24 @@ under the License.
             <artifactId>flink-json</artifactId>
             <version>${flink.version}</version>
         </dependency>
-
+        
+        <dependency>
+            <groupId>org.apache.flink</groupId>
+            <artifactId>flink-statebackend-rocksdb_${scala.libary.version}</artifactId>
+            <version>${flink.version}</version>
+        </dependency>
+        
         <dependency>
             <groupId>org.scala-lang</groupId>
             <artifactId>scala-library</artifactId>
             <version>${scala.libary.version}</version>
-<!--            <scope>provided</scope>-->
+            <!--            <scope>provided</scope>-->
+        </dependency>
+
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <version>1.18.8</version>
         </dependency>
 
         <dependency>
@@ -287,7 +300,8 @@ under the License.
                                         implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
                                     <mainClass>org.learn.flink.connector.network.StreamingJob</mainClass>
                                 </transformer>
-                                <transformer implementation="org.apache.maven.plugins.shade.resource.AppendingTransformer">
+                                <transformer
+                                        implementation="org.apache.maven.plugins.shade.resource.AppendingTransformer">
                                     <resource>reference.conf</resource>
                                 </transformer>
                             </transformers>

@@ -9,7 +9,7 @@ import org.apache.flink.streaming.api.environment.StreamExecutionEnvironment;
 import org.apache.flink.streaming.api.functions.AssignerWithPeriodicWatermarks;
 import org.apache.flink.streaming.api.watermark.Watermark;
 import org.apache.flink.util.Collector;
-import org.learn.flink.ClickEvent;
+import org.learn.flink.common.ClickEvent;
 
 import javax.annotation.Nullable;
 import java.sql.Timestamp;

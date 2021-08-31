@@ -1,4 +1,4 @@
-package org.learn.flink;
+package org.learn.flink.common;
 
 import java.sql.Time;
 import java.sql.Timestamp;
