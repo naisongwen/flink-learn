@@ -3,7 +3,6 @@ package org.learn.flink.connector.hive;
 import org.apache.flink.api.java.ExecutionEnvironment;
 import org.apache.flink.api.java.typeutils.RowTypeInfo;
 import org.apache.flink.table.api.*;
-import org.apache.flink.table.api.bridge.java.BatchTableEnvironment;
 import org.apache.flink.table.catalog.ObjectPath;
 import org.apache.flink.table.catalog.exceptions.CatalogException;
 import org.apache.flink.table.catalog.hive.HiveCatalog;
@@ -48,21 +47,6 @@ public class HiveTableJob {
         }
     }
 
-    static void createHiveTable(HiveCatalog hiveCatalog, String catalogName, String database) throws Exception {
-        ExecutionEnvironment env = ExecutionEnvironment.getExecutionEnvironment();
-        BatchTableEnvironment tableEnv = BatchTableEnvironment.create(env);
-//        TableEnvironment tableEnv = createTableEnvWithBlinkPlannerBatchMode();
-        tableEnv.registerCatalog(catalogName, hiveCatalog);
-        tableEnv.useCatalog(catalogName);
-        tableEnv.useDatabase(database);
-        tableEnv.sqlUpdate("drop table IF EXISTS Orders");
-        String sinkPath = new File("csv-order-sink").toURI().toString();
-        tableEnv.sqlUpdate(String.format("create table Orders(id int,name string) with('connector.type' = 'filesystem','format.type'='csv','connector.path'='%s')",sinkPath));
-//        tableEnv.sqlUpdate("insert into Orders select * from Products");
-        tableEnv.sqlUpdate("insert into Orders values(1,'mac book'),(2,'iphone')");
-        tableEnv.execute("create hive table");
-    }
-
     static Table createQueryTable(HiveCatalog hiveCatalog,String catalogName,String database,String querySql) throws Exception {
         ExecutionEnvironment env = ExecutionEnvironment.getExecutionEnvironment();
 //        BatchTableEnvironment tableEnv = BatchTableEnvironment.create(env);
@@ -90,7 +74,7 @@ public class HiveTableJob {
         String dbName = "default";
         String tblName = "dest";
         HiveCatalog hiveCatalog=HiveUtils.createCatalog(TEST_CATALOG_NAME,"default");
-        createHiveTable(hiveCatalog,TEST_CATALOG_NAME,dbName);
+        //createHiveTable(hiveCatalog,TEST_CATALOG_NAME,dbName);
         Table srcTable=createQueryTable(hiveCatalog,TEST_CATALOG_NAME,"default","select * from Orders");
         TableSchema.Builder builder = new TableSchema.Builder();
         builder.fields(new String[]{"id", "name"},

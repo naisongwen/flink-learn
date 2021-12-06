@@ -16,7 +16,7 @@
  * limitations under the License.
  */
 
-package org.learn.flink.quickstart.batch;
+package org.learn.flink.feature.window;
 
 import org.apache.flink.api.common.functions.FlatMapFunction;
 import org.apache.flink.api.java.DataSet;
@@ -34,7 +34,7 @@ import org.apache.flink.util.Collector;
  * change the main class in the POM.xml file to this class (simply search for 'mainClass')
  * and run 'mvn clean package' on the command line.
  */
-public class BatchProcessDemo {
+public class BatchProcessExmple {
 
 	public static void main(String[] args) throws Exception {
 		// set up the batch execution environment

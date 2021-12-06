@@ -30,16 +30,15 @@ under the License.
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <flink.version>1.12.0</flink.version>
-        <scala.binary.version>2.12</scala.binary.version>
-        <scala.libary.version>2.12.12</scala.libary.version>
+        <flink.version>1.14.0</flink.version>
+        <scala.binary.version>2.11</scala.binary.version>
         <flink.jdbc.version>1.10.2</flink.jdbc.version>
         <java.version>1.8</java.version>
         <hive.version>3.1.2</hive.version>
         <reflections.version>0.9.8</reflections.version>
         <hadoop.version>2.7.5</hadoop.version>
         <hiverunner.version>4.0.0</hiverunner.version>
-        <scala.version>2.12.10</scala.version>
+        <arrow.version>5.0.0</arrow.version>
         <maven.compiler.source>${java.version}</maven.compiler.source>
         <maven.compiler.target>${java.version}</maven.compiler.target>
     </properties>
@@ -138,16 +137,28 @@ under the License.
 
         <dependency>
             <groupId>org.apache.flink</groupId>
+            <artifactId>flink-csv</artifactId>
+            <version>${flink.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.apache.flink</groupId>
             <artifactId>flink-json</artifactId>
             <version>${flink.version}</version>
         </dependency>
 
         <dependency>
-            <groupId>org.scala-lang</groupId>
-            <artifactId>scala-library</artifactId>
-            <version>${scala.libary.version}</version>
-<!--            <scope>provided</scope>-->
+            <groupId>org.apache.flink</groupId>
+            <artifactId>flink-avro</artifactId>
+            <version>${flink.version}</version>
         </dependency>
+
+<!--        <dependency>-->
+<!--            <groupId>org.scala-lang</groupId>-->
+<!--            <artifactId>scala-library</artifactId>-->
+<!--            <version>${scala.libary.version}</version>-->
+<!--&lt;!&ndash;            <scope>provided</scope>&ndash;&gt;-->
+<!--        </dependency>-->
 
         <dependency>
             <groupId>mysql</groupId>
@@ -232,7 +243,6 @@ under the License.
                 </exclusion>
             </exclusions>
         </dependency>
-
     </dependencies>
 
     <build>

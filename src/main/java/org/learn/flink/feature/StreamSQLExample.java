@@ -16,7 +16,7 @@
  * limitations under the License.
  */
 
-package org.learn.flink.quickstart.streaming;
+package org.learn.flink.feature;
 
 import org.apache.flink.api.java.utils.ParameterTool;
 import org.apache.flink.streaming.api.datastream.DataStream;

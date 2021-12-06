@@ -40,7 +40,7 @@ public class FileStreamJob {
 //                .build();
         StreamTableEnvironment tEnv = StreamTableEnvironment.create(env);
 //        env.setRuntimeMode(RuntimeExecutionMode.BATCH);
-        DataStreamSource<String> clickEventSource = env.readTextFile("file:///C:/Users/wns/Documents/workplace/flink-learn-java/tmp/click_input");
+        DataStreamSource<String> clickEventSource = env.readTextFile("file://tmp/click_input");
 
         SingleOutputStreamOperator<ClickEvent> clickEventSourceStream = clickEventSource.flatMap(new FlatMapFunction<String, ClickEvent>() {
             @Override

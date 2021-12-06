@@ -1,4 +1,4 @@
-package org.learn.flink.quickstart.streaming;
+package org.learn.flink.feature;
 
 import org.apache.flink.api.common.eventtime.WatermarkStrategy;
 import org.apache.flink.api.common.functions.MapFunction;

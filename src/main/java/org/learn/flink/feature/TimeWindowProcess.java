@@ -1,4 +1,4 @@
-package org.learn.flink.quickstart.window;
+package org.learn.flink.feature;
 
 import org.apache.commons.lang3.StringUtils;
 import org.apache.flink.api.common.eventtime.WatermarkStrategy;

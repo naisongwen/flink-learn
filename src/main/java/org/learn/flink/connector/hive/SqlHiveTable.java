@@ -21,7 +21,7 @@ public class SqlHiveTable {
 
         tableEnv.sqlUpdate("drop table if exists src");
         tableEnv.sqlUpdate("drop table if exists  sink");
-        tableEnv.sqlUpdate("CREATE TABLE src (" +
+        tableEnv.executeSql("CREATE TABLE src (" +
                 "price DECIMAL(10, 2),currency STRING,ts6 TIMESTAMP(6),ts AS CAST(ts6 AS TIMESTAMP(3)),WATERMARK FOR ts AS ts) " +
                 String.format("WITH ('connector.type' = 'filesystem','connector.path' = 'file://%s','format.type' = 'csv')", srcPath));
 

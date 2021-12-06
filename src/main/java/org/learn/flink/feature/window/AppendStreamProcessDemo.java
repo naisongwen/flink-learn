@@ -1,10 +1,12 @@
-package org.learn.flink.quickstart.streaming;
+package org.learn.flink.feature.window;
 
 import org.apache.flink.api.common.eventtime.WatermarkStrategy;
 import org.apache.flink.api.common.functions.MapFunction;
 import org.apache.flink.api.java.functions.KeySelector;
 import org.apache.flink.api.java.tuple.Tuple2;
 import org.apache.flink.api.java.tuple.Tuple4;
+import org.apache.flink.configuration.Configuration;
+import org.apache.flink.configuration.GlobalConfiguration;
 import org.apache.flink.streaming.api.datastream.DataStream;
 import org.apache.flink.streaming.api.environment.StreamExecutionEnvironment;
 import org.apache.flink.streaming.api.functions.windowing.ProcessWindowFunction;
@@ -32,6 +34,7 @@ public class AppendStreamProcessDemo {
 
         final StreamExecutionEnvironment env =
                 StreamExecutionEnvironment.getExecutionEnvironment();
+
         // 设置checkpoint
         env.enableCheckpointing(TimeUnit.SECONDS.toMillis(10));
         StreamTableEnvironment tEnv = StreamTableEnvironment.create(env);

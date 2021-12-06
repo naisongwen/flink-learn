@@ -1,4 +1,4 @@
-package org.learn.flink.quickstart.window;
+package org.learn.flink.feature.window;
 
 import org.apache.flink.api.java.tuple.Tuple;
 import org.apache.flink.api.java.tuple.Tuple3;
@@ -8,9 +8,7 @@ import org.apache.flink.streaming.api.functions.windowing.ProcessWindowFunction;
 import org.apache.flink.streaming.api.windowing.windows.GlobalWindow;
 import org.apache.flink.util.Collector;
 
-//https://www.cnblogs.com/linjiqin/p/12591729.html
-
-public class CountWindowProcess {
+public class CountWindowProcessExample {
 
     public static final Tuple3[] ENGLISH = new Tuple3[]{
             Tuple3.of("class1","张三",100L),

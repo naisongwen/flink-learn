@@ -5,11 +5,12 @@ import org.apache.kafka.common.serialization.StringDeserializer;
 
 import java.util.Properties;
 
-public class KafkaUtil {
-    static Properties buildKafkaProperties(boolean flatMessage) {
+public class KafkaConfig {
+    public static final String servers="10.201.0.125:9092";
+    public static Properties buildKafkaProperties(boolean flatMessage) {
         Properties properties = new Properties();
         //TCP Port
-        properties.put("bootstrap.servers", "192.168.1.10:9092");
+        properties.put("bootstrap.servers", servers);
         properties.put("group.id", "flink-demo");
         properties.put("enable.auto.commit", false);
         /****

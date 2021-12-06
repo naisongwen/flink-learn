@@ -35,64 +35,13 @@ import org.apache.flink.streaming.connectors.wikiedits.WikipediaEditsSource;
 
 import javax.annotation.Nullable;
 
-/**
- * Skeleton for a Flink Streaming Job.
- *
- * <p>For a tutorial how to write a Flink streaming application, check the
- * tutorials and examples on the <a href="https://flink.apache.org/docs/stable/">Flink Website</a>.
- *
- * <p>To package your application into a JAR file for execution, run
- * 'mvn clean package' on the command line.
- *
- * <p>If you change the name of the main class (with the public static void main(String[] args))
- * method, change the respective entry in the POM.xml file (simply search for 'mainClass').
- */
-public class WikiStreamingProcessJob {
+public class WikiStreamingProcessJobV2 {
 
 	public static void main(String[] args) throws Exception {
-		//FLINK_CONF_DIR=conf/
-
-		//Configuration globalConfiguration = new Configuration();
-
-
-		//http://localhost:9091/ 查看pushgatewaymetrics
-		Configuration globalConfiguration = GlobalConfiguration.loadConfiguration();
-		globalConfiguration.setString("metrics.reporters", "promgateway");
-
-		globalConfiguration.setString("metrics.reporter.promgateway.jobName", "metricJobName");
-		//WARNING：setBoolean等类型不支持，只支持setString
-		globalConfiguration.setString("metrics.reporter.promgateway.randomJobNameSuffix", "false");
-		globalConfiguration.setString("metrics.reporter.promgateway.class", "org.apache.flink.metrics.prometheus.PrometheusPushGatewayReporter");
-		globalConfiguration.setString("metrics.reporter.promgateway.host","localhost");
-		globalConfiguration.setString("metrics.reporter.promgateway.port", "9091");
-		globalConfiguration.setString("metrics.reporter.promgateway.deleteOnShutdown", "false");
-		globalConfiguration.setString("metrics.reporter.promgateway.interval", "10 SECONDS");
-		globalConfiguration.setString("metrics.reporter.promgateway.groupingKey", "k1=v1;k2=v2");
 		//1.获取环境信息
-		final StreamExecutionEnvironment env = StreamExecutionEnvironment.getExecutionEnvironment(globalConfiguration);
-
+		final StreamExecutionEnvironment env = StreamExecutionEnvironment.getExecutionEnvironment();
 		env.setStreamTimeCharacteristic(TimeCharacteristic.EventTime);
 
-
-		/*
-		 * Here, you can start creating your execution plan for Flink.
-		 *
-		 * Start with getting some data from the environment, like
-		 * 	env.readTextFile(textPath);
-		 *
-		 * then, transform the resulting DataStream<String> using operations
-		 * like
-		 * 	.filter()
-		 * 	.flatMap()
-		 * 	.join()
-		 * 	.coGroup()
-		 *
-		 * and many more.
-		 * Have a look at the programming guide for the Java API:
-		 *
-		 * https://flink.apache.org/docs/latest/apis/streaming/index.html
-		 *
-		 */
 		//2.为环境信息添加WikipediaEditsSource源
 		DataStream<WikipediaEditEvent> edits = env.addSource(new WikipediaEditsSource()).assignTimestampsAndWatermarks(new BoundedOutOfOrdernessGenerator());
 
