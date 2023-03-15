@@ -2,7 +2,6 @@ package org.learn.flink.feature.serde;
 
 import org.apache.flink.api.common.eventtime.WatermarkStrategy;
 import org.apache.flink.api.common.restartstrategy.RestartStrategies;
-import org.apache.flink.api.common.serialization.SimpleStringSchema;
 import org.apache.flink.api.common.typeinfo.TypeInformation;
 import org.apache.flink.connector.kafka.source.KafkaSource;
 import org.apache.flink.connector.kafka.source.enumerator.initializer.OffsetsInitializer;
@@ -14,13 +13,11 @@ import org.apache.flink.util.Collector;
 import org.apache.kafka.clients.consumer.ConsumerRecord;
 import org.apache.kafka.common.TopicPartition;
 import org.apache.kafka.common.serialization.Deserializer;
-import org.apache.kafka.common.serialization.IntegerDeserializer;
 import org.apache.kafka.common.serialization.StringDeserializer;
-import org.learn.flink.connector.kafka.KafkaConfig;
+import org.learn.flink.connector.kafka.KafkaConf;
 
 import java.io.IOException;
 import java.io.Serializable;
-import java.util.Arrays;
 
 public class KafkaStringDeserilizeWithMetaConsumer {
     public static void main(String[] args) throws Exception {
@@ -40,7 +37,7 @@ public class KafkaStringDeserilizeWithMetaConsumer {
 
         KafkaSource<MetaAndValue> kafkaSource =
                 KafkaSource.<MetaAndValue>builder()
-                        .setBootstrapServers(KafkaConfig.servers)
+                        .setBootstrapServers(KafkaConf.servers)
                         .setGroupId("testBasicRead")
                         .setTopics(topic)
                         .setDeserializer(deserializationSchema)

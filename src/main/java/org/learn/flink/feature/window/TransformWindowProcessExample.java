@@ -17,13 +17,14 @@ import org.apache.flink.streaming.api.functions.windowing.ProcessAllWindowFuncti
 import org.apache.flink.streaming.api.operators.AbstractStreamOperator;
 import org.apache.flink.streaming.api.operators.OneInputStreamOperator;
 import org.apache.flink.streaming.api.windowing.assigners.TumblingEventTimeWindows;
+import org.apache.flink.streaming.api.windowing.assigners.TumblingProcessingTimeWindows;
 import org.apache.flink.streaming.api.windowing.time.Time;
 import org.apache.flink.streaming.api.windowing.windows.TimeWindow;
 import org.apache.flink.streaming.runtime.streamrecord.StreamRecord;
 import org.apache.flink.streaming.util.serialization.JSONKeyValueDeserializationSchema;
 import org.apache.flink.types.Row;
 import org.apache.flink.util.Collector;
-import org.learn.flink.connector.kafka.KafkaConfig;
+import org.learn.flink.connector.kafka.KafkaConf;
 
 import java.util.Iterator;
 import java.util.Map;
@@ -43,7 +44,7 @@ public class TransformWindowProcessExample {
         //默认提供了 KafkaDeserializationSchema(序列化需要自己编写)、JsonDeserializationSchema、AvroDeserializationSchema、TypeInformationSerializationSchema
         KafkaSource<ObjectNode> kafkaSource =
                 KafkaSource.<ObjectNode>builder()
-                        .setBootstrapServers(KafkaConfig.servers)
+                        .setBootstrapServers(KafkaConf.servers)
                         .setGroupId("testTimestampAndWatermark")
                         .setTopics(topic)
                         .setDeserializer(KafkaRecordDeserializationSchema.of(new JSONKeyValueDeserializationSchema(true)))
@@ -57,7 +58,7 @@ public class TransformWindowProcessExample {
 
         rowStream.print();
 
-        rowStream.windowAll(TumblingEventTimeWindows.of(Time.seconds(5))) //设置时间窗口
+        rowStream.windowAll(TumblingProcessingTimeWindows.of(Time.seconds(5))) //设置时间窗口
                 .process(new MyProcessAllWindows())
                 .print();
 

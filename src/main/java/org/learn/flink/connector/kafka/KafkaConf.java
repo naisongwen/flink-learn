@@ -5,7 +5,7 @@ import org.apache.kafka.common.serialization.StringDeserializer;
 
 import java.util.Properties;
 
-public class KafkaConfig {
+public class KafkaConf {
     public static final String servers="10.201.0.125:9092";
     public static Properties buildKafkaProperties(boolean flatMessage) {
         Properties properties = new Properties();

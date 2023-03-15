@@ -8,3 +8,21 @@ metrics.reporter.promgateway.randomJobNameSuffix: true
 metrics.reporter.promgateway.deleteOnShutdown: false
 metrics.reporter.promgateway.groupingKey: k1=v1;k2=v2
 metrics.reporter.promgateway.interval: 1 SECONDS
+
+fs.allowed-fallback-filesystems:s3;s3a
+configuration:
+    table.optimizer.join-reorder-enabled: true
+    table.exec.spill-compression.enabled: true
+    table.exec.spill-compression.block-size: 128kb
+    s3.access-key: QZPRJYP4SFWOARJYMV4U
+    s3.secret-key: pBGvb01505Oxn49XTkzAYu4h5TRYMPbgLra9UZze
+    s3.endpoint: obs.cn-southwest-2.myhuaweicloud.com
+    s3.path.style.access: true
+    fs.allowed-fallback-filesystems: s3;s3a
+    fs.obs.impl: org.apache.hadoop.fs.obs.OBSFileSystem
+# Properties that describe the cluster to which table programs are submitted to.
+
+deployment:
+    response-timeout: 5000
+
+#table.dynamic-table-options.enabled: true

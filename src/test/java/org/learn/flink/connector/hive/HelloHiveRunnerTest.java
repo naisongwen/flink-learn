@@ -12,7 +12,7 @@ import java.util.List;
 import static junit.framework.TestCase.assertEquals;
 
 @RunWith(StandaloneHiveRunner.class)
-public class HelloHiveRunner {
+public class HelloHiveRunnerTest {
 
     @HiveSQL(files = {})
     private HiveShell shell;

@@ -43,8 +43,7 @@
 		<value>true</value>
 	</property>
 	<property>
-		<name>hive.metastore.warehouse.dir</name>
-		<value>/user/hive/warehouse</value>
-		<description>location of default database for the warehouse</description>
+		<name>hive.metastore.uris</name>
+		<value>thrift://10.201.0.212:39083</value>
 	</property>
 </configuration>

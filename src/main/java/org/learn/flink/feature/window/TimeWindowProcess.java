@@ -1,4 +1,4 @@
-package org.learn.flink.feature;
+package org.learn.flink.feature.window;
 
 import org.apache.commons.lang3.StringUtils;
 import org.apache.flink.api.common.eventtime.WatermarkStrategy;
@@ -30,7 +30,7 @@ public class TimeWindowProcess {
         SingleOutputStreamOperator<ClickEvent> clickEventSourceStream = clickEventSource.flatMap(new FlatMapFunction<String, ClickEvent>() {
             @Override
             public void flatMap(String s, Collector<ClickEvent> collector) {
-                String infos[] = s.split(" ");
+                String[] infos = s.split(" ");
                 if (StringUtils.isNotBlank(s)) {
                     ClickEvent clickEvent = new ClickEvent();
                     clickEvent.setUser(infos[0]);

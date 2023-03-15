@@ -9,12 +9,12 @@ import org.apache.flink.streaming.api.windowing.time.Time;
 
 import org.apache.flink.util.Collector;
 //https://ci.apache.org/projects/flink/flink-docs-release-1.12/dev/datastream_api.html
-
+//nc -lk 9999
 public class WordCountStreaming {
     public static void main(String[] args) throws Exception {
 
         StreamExecutionEnvironment env = StreamExecutionEnvironment.getExecutionEnvironment();
-
+        env.setParallelism(1);
         DataStream<Tuple2<String, Integer>> dataStream = env
                 .socketTextStream("localhost", 9999)
                 .flatMap(new Splitter())

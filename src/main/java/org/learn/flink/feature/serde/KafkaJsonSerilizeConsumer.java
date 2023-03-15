@@ -10,11 +10,11 @@ import org.apache.flink.streaming.api.TimeCharacteristic;
 import org.apache.flink.streaming.api.datastream.DataStream;
 import org.apache.flink.streaming.api.environment.StreamExecutionEnvironment;
 import org.apache.flink.streaming.util.serialization.JSONKeyValueDeserializationSchema;
-import org.learn.flink.connector.kafka.KafkaConfig;
+import org.learn.flink.connector.kafka.KafkaConf;
 
 public class KafkaJsonSerilizeConsumer {
     public static void main(String[] args) throws Exception {
-        final String topic = "dcttest";
+        final String topic = "json_data_sample";
 
         // ---------- Produce an event time stream into Kafka -------------------
         StreamExecutionEnvironment env = StreamExecutionEnvironment.getExecutionEnvironment();
@@ -27,7 +27,7 @@ public class KafkaJsonSerilizeConsumer {
         //默认提供了 KafkaDeserializationSchema(序列化需要自己编写)、JsonDeserializationSchema、AvroDeserializationSchema、TypeInformationSerializationSchema
         KafkaSource<ObjectNode> kafkaSource =
                 KafkaSource.<ObjectNode>builder()
-                        .setBootstrapServers(KafkaConfig.servers)
+                        .setBootstrapServers(KafkaConf.servers)
                         .setGroupId("testTimestampAndWatermark")
                         .setTopics(topic)
                         .setDeserializer(KafkaRecordDeserializationSchema.of(new JSONKeyValueDeserializationSchema(true)))

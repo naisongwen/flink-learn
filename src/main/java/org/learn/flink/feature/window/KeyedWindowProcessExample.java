@@ -17,7 +17,7 @@ import org.apache.flink.streaming.api.windowing.time.Time;
 import org.apache.flink.streaming.api.windowing.windows.TimeWindow;
 import org.apache.flink.streaming.util.serialization.JSONKeyValueDeserializationSchema;
 import org.apache.flink.util.Collector;
-import org.learn.flink.connector.kafka.KafkaConfig;
+import org.learn.flink.connector.kafka.KafkaConf;
 
 public class KeyedWindowProcessExample {
     public static void main(String[] args) throws Exception {
@@ -34,7 +34,7 @@ public class KeyedWindowProcessExample {
         //默认提供了 KafkaDeserializationSchema(序列化需要自己编写)、JsonDeserializationSchema、AvroDeserializationSchema、TypeInformationSerializationSchema
         KafkaSource<ObjectNode> kafkaSource =
                 KafkaSource.<ObjectNode>builder()
-                        .setBootstrapServers(KafkaConfig.servers)
+                        .setBootstrapServers(KafkaConf.servers)
                         .setGroupId("testTimestampAndWatermark")
                         .setTopics(topic)
                         .setDeserializer(KafkaRecordDeserializationSchema.of(new JSONKeyValueDeserializationSchema(true)))

@@ -14,7 +14,7 @@ import org.apache.flink.streaming.api.TimeCharacteristic;
 import org.apache.flink.streaming.api.datastream.DataStream;
 import org.apache.flink.streaming.api.environment.StreamExecutionEnvironment;
 import org.learn.flink.ClickEvent;
-import org.learn.flink.connector.kafka.KafkaConfig;
+import org.learn.flink.connector.kafka.KafkaConf;
 
 public class KafkaTypeInfoSerializeConsumer {
     public static void main(String[] args) throws Exception {
@@ -42,7 +42,7 @@ public class KafkaTypeInfoSerializeConsumer {
         //createKafkaSource、.setDeserializer(KafkaRecordDeserializationSchema.valueOnly(StringDeserializer.class))
         KafkaSource<String> kafkaSource =
                 KafkaSource.<String>builder()
-                        .setBootstrapServers(KafkaConfig.servers)
+                        .setBootstrapServers(KafkaConf.servers)
                         .setGroupId("testTimestampAndWatermark")
                         .setTopics(topic)
                         .setDeserializer(KafkaRecordDeserializationSchema.valueOnly(serializationSchema))

@@ -9,7 +9,7 @@ import org.apache.flink.connector.kafka.source.reader.deserializer.KafkaRecordDe
 import org.apache.flink.streaming.api.TimeCharacteristic;
 import org.apache.flink.streaming.api.datastream.DataStream;
 import org.apache.flink.streaming.api.environment.StreamExecutionEnvironment;
-import org.learn.flink.connector.kafka.KafkaConfig;
+import org.learn.flink.connector.kafka.KafkaConf;
 
 public class KafkaStringDeserilizeConsumer {
     public static void main(String[] args) throws Exception {
@@ -27,8 +27,8 @@ public class KafkaStringDeserilizeConsumer {
         //默认提供了 KafkaDeserializationSchema(序列化需要自己编写)、JsonDeserializationSchema、AvroDeserializationSchema、TypeInformationSerializationSchema
         KafkaSource<String> kafkaSource =
                 KafkaSource.<String>builder()
-                        .setBootstrapServers(KafkaConfig.servers)
-                        .setGroupId("testTimestampAndWatermark")
+                        .setBootstrapServers(KafkaConf.servers)
+                        .setGroupId(KafkaStringDeserilizeConsumer.class.getName())
                         .setTopics(topic)
                         .setDeserializer(KafkaRecordDeserializationSchema.valueOnly(simpleStringSchema))
                         .setStartingOffsets(OffsetsInitializer.earliest())
