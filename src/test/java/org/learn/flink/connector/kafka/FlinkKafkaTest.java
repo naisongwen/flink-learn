@@ -16,7 +16,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 //KafkaTableITCase
-public class KafkaSqlJobTest {
+public class FlinkKafkaTest {
 
     @Test
     public void testSinkKafka() throws Exception {

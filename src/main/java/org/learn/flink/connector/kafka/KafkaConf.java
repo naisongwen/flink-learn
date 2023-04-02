@@ -1,12 +1,17 @@
 package org.learn.flink.connector.kafka;
 
-import org.apache.flink.queryablestate.network.messages.MessageDeserializer;
 import org.apache.kafka.common.serialization.StringDeserializer;
+import org.apache.kafka.common.serialization.StringSerializer;
 
 import java.util.Properties;
 
 public class KafkaConf {
-    public static final String servers="10.201.0.125:9092";
+//    public static final String servers = "10.201.0.82:9092";
+    public static final String servers = "10.201.0.89:8082";
+//    public static final String servers = "10.201.0.44:8082";
+    public static final String schemaRegistryUrl = "http://10.201.0.89:8081";
+
+
     public static Properties buildKafkaProperties(boolean flatMessage) {
         Properties properties = new Properties();
         //TCP Port
@@ -30,12 +35,11 @@ public class KafkaConf {
 //        properties.put("sasl.mechanism", "PLAIN");
 //        properties.put("sasl.jaas.config", "org.apache.kafka.common.security.plain.PlainLoginModule required username=\"admin\" password=\"admin\";");
         properties.put("max.poll.records", "10");
+        properties.put("key.serializer", StringSerializer.class.getName());
+        properties.put("value.serializer", StringSerializer.class.getName());
+
         properties.put("key.deserializer", StringDeserializer.class.getName());
-        if (!flatMessage) {
-            properties.put("value.deserializer", MessageDeserializer.class.getName());
-        } else {
-            properties.put("value.deserializer", StringDeserializer.class.getName());
-        }
+        properties.put("value.deserializer", StringDeserializer.class.getName());
         return properties;
     }
 }
