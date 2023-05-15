@@ -23,9 +23,7 @@ public class FlinkKafkaTest {
         StreamExecutionEnvironment env = StreamExecutionEnvironment.createLocalEnvironment();
         env.setParallelism(1);
         env.getConfig().setRestartStrategy(RestartStrategies.noRestart());
-        EnvironmentSettings environmentSettings = EnvironmentSettings.newInstance().inStreamingMode()
-                .useBlinkPlanner()
-                .build();
+        EnvironmentSettings environmentSettings = EnvironmentSettings.newInstance().inStreamingMode().build();
         StreamTableEnvironment tableEnv = StreamTableEnvironment.create(env, environmentSettings);
         tableEnv.registerCatalog("hive", HiveUtils.createCatalog("hive","default"));
         tableEnv.useCatalog("hive");
@@ -52,7 +50,6 @@ public class FlinkKafkaTest {
         env.setParallelism(1);
         env.getConfig().setRestartStrategy(RestartStrategies.noRestart());
         EnvironmentSettings environmentSettings = EnvironmentSettings.newInstance().inStreamingMode()
-                .useBlinkPlanner()
                 .build();
         StreamTableEnvironment tableEnvironment = StreamTableEnvironment.create(env, environmentSettings);
         String sql="CREATE TABLE KafkaTable (\n" +

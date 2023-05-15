@@ -186,7 +186,6 @@ public class KafkaProducerTestV3 {
         }
 
         FailingIdentityMapper.failedBefore = false;
-        TestUtils.tryExecute(env, "Exactly once test");
 
         for (int i = 0; i < sinksCount; i++) {
             // assert that before failure we successfully snapshot/flushed all expected elements

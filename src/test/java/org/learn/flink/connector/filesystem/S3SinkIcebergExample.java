@@ -18,7 +18,6 @@ public class S3SinkIcebergExample {
         env.setParallelism(1);
         env.getConfig().setRestartStrategy(RestartStrategies.noRestart());
         EnvironmentSettings environmentSettings = EnvironmentSettings.newInstance().inStreamingMode()
-                .useBlinkPlanner()
                 .build();
         StreamTableEnvironment tableEnvironment = StreamTableEnvironment.create(env, environmentSettings);
 

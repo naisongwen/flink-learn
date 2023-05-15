@@ -5,6 +5,7 @@ import org.apache.flink.api.common.RuntimeExecutionMode;
 import org.apache.flink.api.java.tuple.Tuple2;
 import org.apache.flink.streaming.api.datastream.DataStream;
 import org.apache.flink.streaming.api.environment.StreamExecutionEnvironment;
+import org.apache.flink.table.api.Expressions;
 import org.apache.flink.table.api.Table;
 import org.apache.flink.table.api.bridge.java.StreamTableEnvironment;
 
@@ -48,7 +49,7 @@ public class TemporalTableExampleV2 {
         rateTable.printSchema();//only for debug
         tEnv.registerFunction(
                 "Rates",
-                rateTable.createTemporalTableFunction("proctime", "currency"));
+                rateTable.createTemporalTableFunction(Expressions.$("proctime"), Expressions.$("currency")));
 
         String sqlQuery =
                 "SELECT o.currency, o.amount, r.rate, " +

@@ -4,10 +4,10 @@ import org.apache.flink.api.common.eventtime.WatermarkStrategy;
 import org.apache.flink.api.common.restartstrategy.RestartStrategies;
 import org.apache.flink.api.common.typeinfo.TypeInformation;
 import org.apache.flink.api.java.tuple.Tuple3;
-import org.apache.flink.calcite.shaded.com.google.common.collect.Maps;
 import org.apache.flink.connector.kafka.source.KafkaSource;
 import org.apache.flink.connector.kafka.source.enumerator.initializer.OffsetsInitializer;
 import org.apache.flink.connector.kafka.source.reader.deserializer.KafkaRecordDeserializationSchema;
+import org.apache.flink.shaded.guava30.com.google.common.collect.Maps;
 import org.apache.flink.shaded.jackson2.com.fasterxml.jackson.databind.node.ObjectNode;
 import org.apache.flink.streaming.api.TimeCharacteristic;
 import org.apache.flink.streaming.api.datastream.DataStream;
@@ -76,8 +76,9 @@ public class TransformWindowProcessExample {
                 Set<String> fieldNames = row.getFieldNames(false);
                 for (String filedName : fieldNames) {
                     Object field = row.getField(filedName);
-                    if (field != null)
+                    if (field != null) {
                         statMap.put(filedName, 1 + statMap.getOrDefault(filedName, 0L));
+                    }
                 }
             }
             statMap.forEach((s, count) -> out.collect(new Tuple3<>(s, count,context.window().getEnd())));

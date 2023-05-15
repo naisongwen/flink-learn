@@ -30,6 +30,7 @@ import org.apache.flink.streaming.connectors.kafka.KafkaSerializationSchema;
 import org.apache.flink.streaming.connectors.kafka.internals.KafkaDeserializationSchemaWrapper;
 import org.apache.flink.streaming.connectors.kafka.partitioner.FlinkKafkaPartitioner;
 import org.apache.flink.streaming.util.serialization.KeyedSerializationSchema;
+import org.apache.flink.util.NetUtils;
 import org.apache.kafka.clients.consumer.ConsumerRecord;
 
 import java.util.*;
@@ -233,8 +234,8 @@ public abstract class KafkaTestEnvironment {
         }
     }
 
-    protected NetworkFailuresProxy createProxy(String remoteHost, int remotePort) {
-        NetworkFailuresProxy proxy = new NetworkFailuresProxy(0, remoteHost, remotePort);
+    protected NetworkFailuresProxy createProxy(String remoteHost, NetUtils.Port remotePort) {
+        NetworkFailuresProxy proxy = new NetworkFailuresProxy(0, remoteHost, remotePort.getPort());
         networkFailuresProxies.add(proxy);
         return proxy;
     }

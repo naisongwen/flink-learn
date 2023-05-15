@@ -415,8 +415,8 @@ public class KafkaTestEnvironmentImpl extends KafkaTestEnvironment {
         final int numTries = 5;
 
         for (int i = 1; i <= numTries; i++) {
-            int kafkaPort = NetUtils.getAvailablePort();
-            kafkaProperties.put("port", Integer.toString(kafkaPort));
+            NetUtils.Port kafkaPort = NetUtils.getAvailablePort();
+            kafkaProperties.put("port", Integer.toString(kafkaPort.getPort()));
 
             if (config.isHideKafkaBehindProxy()) {
                 NetworkFailuresProxy proxy = createProxy(KAFKA_HOST, kafkaPort);
